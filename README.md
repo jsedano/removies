@@ -48,7 +48,14 @@ jedisPooled.ftSearch(
    - [Amazon Prime Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/amazon-prime-movies-and-tv-shows)
    - [Hulu Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/hulu-movies-and-tv-shows)
 - clone this repository and copy the datasets on src/main/resources
-- run it with `mvn spring-boot:run`
+- create the following indexes:
+```
+FT.CREATE genreIdx ON JSON PREFIX 1 media: SCHEMA $.genre.* AS genres TAG
+FT.CREATE titleIdx ON JSON PREFIX 1 media: SCHEMA $.title AS title TEXT
+FT.CREATE providerIdx ON JSON PREFIX 1 media: SCHEMA $.provider.* AS providers TAG
+FT.CREATE castIdx ON JSON PREFIX 1 media: SCHEMA $.cast.* AS cast TAG
+```
+- run it with `mvn spring-boot:run` the database will fill up on startup.
 
 ## More Information about Redis Stack
 
