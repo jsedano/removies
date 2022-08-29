@@ -7,9 +7,8 @@ import redis.clients.jedis.JedisPooled;
 @Configuration
 public class RedisConfig {
 
-    @Bean
-    public JedisPooled getJedisPooled(){
-        return new JedisPooled("localhost", 6379);
-    }
-
+  @Bean
+  public JedisPooled getJedisPooled() {
+    return new JedisPooled("localhost", 6379);
+  }
 }

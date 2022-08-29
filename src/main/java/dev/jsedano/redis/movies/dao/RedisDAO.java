@@ -7,11 +7,9 @@ import redis.clients.jedis.JedisPooled;
 @Service
 public class RedisDAO {
 
-    @Autowired
-    private JedisPooled jedisPooled;
+  @Autowired private JedisPooled jedisPooled;
 
-
-    public void add(){
-        jedisPooled.sadd("hola", "mundo");
-    }
+  public void add() {
+    jedisPooled.sadd("hola", "mundo");
+  }
 }
