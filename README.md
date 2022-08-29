@@ -2,34 +2,51 @@
 
 Removies is an api that lets you search movies and tv shows information from a database of movies from several streaming services.
 
-[Insert app screenshots](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#uploading-assets)
-
-
 ## How it works
 
 ### How the data is stored:
 
-Refer to [this example](https://github.com/redis-developer/basic-analytics-dashboard-redis-bitmaps-nodejs#how-the-data-is-stored) for a more detailed example of what you need for this section.
+The data is stored as JSON documents using [RedisJSON](https://redis.io/docs/stack/json/)
+
+```java
+public void insert(String key, MediaDTO mediaDTO) {
+  jedisPooled.jsonSet(key, gson.toJson(mediaDTO));
+}
+```
+
+`MediaDTO` is the object to be inserted but first it needs to be represented as JSON so we use `gson` for that.
 
 ### How the data is accessed:
 
-Refer to [this example](https://github.com/redis-developer/basic-analytics-dashboard-redis-bitmaps-nodejs#how-the-data-is-accessed) for a more detailed example of what you need for this section.
+To access data several [indexes need to be created](https://redis.io/commands/ft.create/).
+Then [RediSearch](https://redis.io/docs/stack/search/) is used to make queries.
 
-### Performance Benchmarks
 
-[If you migrated an existing app to use Redis, please put performance benchmarks here to show the performance improvements.]
+```java
+jedisPooled.ftSearch(
+    "titleIdx", new Query("@title:(" + cleanTitle + ")").returnFields("title"));
+}
+```
+
 
 ## How to run it locally?
 
-[Make sure you test this with a fresh clone of your repo, these instructions will be used to judge your app.]
 
 ### Prerequisites
 
-[Fill out with any prerequisites (e.g. Node, Docker, etc.). Specify minimum versions]
+- Have an instance of [redis-stack](khttps://redis.io/docs/stack/) running.
+- Apache Maven 3.8.6
+- Java 17
 
 ### Local installation
 
-[Insert instructions for local installation]
+- Download the following data sets:
+   - [Disney+ Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/disney-movies-and-tv-shows)
+   - [Netflix Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/netflix-shows)
+   - [Amazon Prime Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/amazon-prime-movies-and-tv-shows)
+   - [Hulu Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/hulu-movies-and-tv-shows)
+- clone this repository and copy the datasets on src/main/resources
+- run it with `mvn spring-boot:run`
 
 ## More Information about Redis Stack
 
