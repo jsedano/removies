@@ -43,8 +43,8 @@ public final class FillDatabaseUtil {
                   "titleIdx", new Query("@title:(" + cleanTitle + ")").returnFields("title"));
           for (Document d : searchResult.getDocuments()) {
             if (mediaDTO.getTitle().equals(d.get("title"))) {
-              exactMatch = true;
               MediaDTO foundMediaDTO = jedisPooled.jsonGet(d.getId(), MediaDTO.class);
+              exactMatch = true;
               foundMediaDTO.getCast().addAll(mediaDTO.getCast());
               foundMediaDTO.getGenre().addAll(mediaDTO.getGenre());
               foundMediaDTO.getProvider().addAll(mediaDTO.getProvider());
