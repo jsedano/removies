@@ -1,8 +1,7 @@
 package dev.jsedano.redis.movies.request;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 @Data
 public class CastRequest {

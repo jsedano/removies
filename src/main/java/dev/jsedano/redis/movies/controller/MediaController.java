@@ -4,9 +4,8 @@ import dev.jsedano.redis.movies.dao.RedisDAO;
 import dev.jsedano.redis.movies.dto.MediaDTO;
 import dev.jsedano.redis.movies.request.CastRequest;
 import dev.jsedano.redis.movies.request.GenreRequest;
-import java.util.List;
-
 import dev.jsedano.redis.movies.request.ProviderRequest;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
