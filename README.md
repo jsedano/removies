@@ -2,6 +2,8 @@
 
 Removies is an api that lets you search movies and tv shows information from a database of movies from several streaming services.
 
+![Screen Shot 2022-08-29 at 1 02 21](https://user-images.githubusercontent.com/4958726/187133254-d462f8c6-06f8-457a-b475-98108ee4ba85.png)
+
 ## How it works
 
 ### How the data is stored:
